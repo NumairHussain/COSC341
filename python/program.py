@@ -1,4 +1,4 @@
-def compute_pi(n: int):
+def compute_pi(n):
     sign = 1
     pi = 0.0
 
@@ -8,7 +8,7 @@ def compute_pi(n: int):
 
     return 4 * pi
 
-def compute_sqrt(n: int):
+def compute_sqrt(n):
     next = 1.0
     last = 1.0
 
@@ -18,22 +18,30 @@ def compute_sqrt(n: int):
 
     return next
 
-def display_primes(n: int):
-    print("Hello")
+def is_prime(n):
+    for i in range(2, n):
+        if ((n % i) == 0):
+            return False
+    return True
+
+def display_primes(n):
+    for i in range(2, n):
+        if is_prime(i):
+            print(i)
 
 def process_scores():
     print("Hello")
 
-def compute_tax(income: int, status: str, state: str):
+def compute_tax(income, status, state):
     print("Hello")
 
-def solve_quadratic(a: int, b: int, c: int):
+def solve_quadratic(a, b, c):
     print("Hello")
 
-def sort(list: list[int]):
+def sort(list):
     print("Hello")
 
-def id_password(first: str, last: str):
+def id_password(first, last):
     print("Hello")
 
 def file_sort(infile, outfile):
