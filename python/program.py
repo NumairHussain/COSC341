@@ -30,7 +30,58 @@ def display_primes(n):
             print(i)
 
 def process_scores():
-    print("Hello")
+    # Initialize variables
+    worst_student = ""
+    best_student = ""
+    best_grade = 0
+    worst_grade = 100
+    total_students = 0
+    sum_grades = 0
+    
+    while True:
+        # Prompt user for input
+        user_input = input("Enter student name and score, or q to quit: ")
+        
+        # Check for quit condition
+        if user_input.lower().startswith('q'):
+            break
+        
+        # Parse input - expect "name score" format
+        try:
+            parts = user_input.split()
+            if len(parts) >= 2:
+                name_buffer = parts[0]
+                grade_input = int(parts[1])
+            else:
+                print("Please enter both name and score")
+                continue
+        except ValueError:
+            print("Please enter a valid score (integer)")
+            continue
+        
+        # Update min, max, and sum
+        if grade_input < worst_grade:
+            worst_student = name_buffer
+            worst_grade = grade_input
+        
+        if grade_input > best_grade:
+            best_student = name_buffer
+            best_grade = grade_input
+            
+        sum_grades += grade_input
+        total_students += 1
+    
+    # Display results
+    if total_students > 0:
+        average_score = sum_grades / total_students
+        print(f"Avg score: {average_score:.2f}")
+        print(f"Best grade: {best_grade}")
+        print(f"Worst grade: {worst_grade}")
+        print(f"Best student: {best_student}")
+        print(f"Worst student: {worst_student} \n")
+    else:
+        print("No scores entered")
+
 
 def compute_tax(income, status, state):
     print("Hello")
