@@ -143,7 +143,11 @@ def solve_quadratic(a, b, c):
     return solution1, solution2
 
 def sort(list):
-    print("Hello")
+    for i in range(len(list)):
+        for j in range(i + 1, len(list)):
+            if list[i] > list[j]:
+                list[i], list[j] = list[j], list[i]
+    return list
 
 def id_password(first, last):
     print("Hello")
@@ -208,7 +212,7 @@ while True:
             except ValueError:
                 break
 
-        output_list = sort(input_list)
+        print("The sorted list is ", sort(input_list))
 
     elif choice == "8":
         input_first_name = input("Enter your first name")
