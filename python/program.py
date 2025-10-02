@@ -150,7 +150,19 @@ def sort(list):
     return list
 
 def id_password(first, last):
-    print("Hello")
+    '''
+    The user
+    id is the first letter of the first name followed by the last name
+
+    The password is the first
+    letter of the first name followed the last letter of the first name followed by the first three
+    letters of the last name followed by the length of the first name followed by the length of
+    the last name
+    '''
+    user_id = first[0] + last
+    password = first[0] + first[len(first) - 1] + last[0:3] + (str) (len(first)) + (str) (len(last))
+
+    return user_id.upper(), password.upper()
 
 def file_sort(infile, outfile):
     print("Hello")
@@ -215,9 +227,10 @@ while True:
         print("The sorted list is ", sort(input_list))
 
     elif choice == "8":
-        input_first_name = input("Enter your first name")
-        input_last_name = input("Enter your last name")
-        id_password(input_first_name, input_last_name)
+        input_first_name = input("Enter your first name: ")
+        input_last_name = input("Enter your last name: ")
+        output_user_id, output_password = id_password(input_first_name, input_last_name)
+        print("User id: " + output_user_id + " | Password: " + output_password)
 
     elif choice == "9":
         file_sort()
