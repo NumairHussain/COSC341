@@ -165,7 +165,34 @@ def id_password(first, last):
     return user_id.upper(), password.upper()
 
 def file_sort(infile, outfile):
-    print("Hello")
+    infile = open(infile, 'r')
+    length = (int) (infile.readline().strip())
+
+    student_ids = []
+    student_names = []
+    student_gpas = []
+
+    for i in range(length):
+        line = infile.readline()
+        id_num, name, gpa = line.split()
+        student_ids.append(id_num)
+        student_names.append(name)
+        student_gpas.append(gpa)
+
+    for i in range(len(student_ids)):
+        for j in range(i + 1, len(student_ids)):
+            if student_ids[i] > student_ids[j]:
+                student_ids[i], student_ids[j] = student_ids[j], student_ids[i]
+                student_names[i], student_names[j] = student_names[j], student_names[i]
+                student_gpas[i], student_gpas[j] = student_gpas[j], student_gpas[i]
+    
+
+    outfile = open(outfile, 'w')
+    outfile.write((str) (length) + "\n")
+    for i in range(length):
+        outfile.write(student_ids[i] + " " + student_names[i] + " " + student_gpas[i] + "\n")
+
+
 
 
 while True:
@@ -233,7 +260,9 @@ while True:
         print("User id: " + output_user_id + " | Password: " + output_password)
 
     elif choice == "9":
-        file_sort()
+        input_file_name = input("Enter the name of the file to be sorted: ")
+        output_file_name = input("Enter the name of the file to put the results in: ")
+        file_sort(input_file_name, output_file_name)
 
     elif choice == "10":
         break
