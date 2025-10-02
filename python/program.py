@@ -1,3 +1,6 @@
+import math
+
+
 def compute_pi(n):
     sign = 1
     pi = 0.0
@@ -84,10 +87,60 @@ def process_scores():
 
 
 def compute_tax(income, status, state):
-    print("Hello")
+    if income < 0:
+        return -1
+
+    # Convert status to lowercase
+    status = status.lower()
+
+    # Validate status (should be "single" or "married")
+    if status not in ["single", "married"]:
+        return -1
+    
+    # Validate state (should be 'i' or 'o')
+    if state.lower() not in ['i', 'o']:
+        return -1
+
+    tax_rate = 0.0
+
+    if state.lower() == 'i':  # In-state
+        if status == "single":  # Single
+            if income < 40000:
+                tax_rate = 0.30
+            else:
+                tax_rate = 0.35
+        else:  # Married
+            if income < 60000:
+                tax_rate = 0.20
+            else:
+                tax_rate = 0.25
+    else:  # Out-of-state (3% less)
+        if status == "single":  # Single
+            if income < 40000:
+                tax_rate = 0.27  # 30% - 3%
+            else:
+                tax_rate = 0.32  # 35% - 3%
+        else:  # Married
+            if income < 60000:
+                tax_rate = 0.17  # 20% - 3%
+            else:
+                tax_rate = 0.22  # 25% - 3%
+
+    return income * tax_rate
 
 def solve_quadratic(a, b, c):
-    print("Hello")
+    
+    discriminant = (b * b) - (4 * a * c)
+    
+    if discriminant < 0:
+        # No real solutions (negative discriminant)
+        return 0, 0
+    
+    # Calculate both solutions using quadratic formula
+    solution1 = (-b + math.sqrt(discriminant)) / (2 * a)
+    solution2 = (-b - math.sqrt(discriminant)) / (2 * a)
+    
+    return solution1, solution2
 
 def sort(list):
     print("Hello")
@@ -131,15 +184,20 @@ while True:
 
     elif choice == "5":
         income = input("Enter income: ")
-        status = input("Enter status (married) or (single)")
+        status = input("Enter status (married) or (single): ")
         state = input("Enter (i)nside or (o)utside of state: ")
-        compute_tax(int(income), status, state)
+        tax_amount = compute_tax(int(income), status, state)
+        if tax_amount == -1:
+            print("Invalid input provided")
+        else:
+            print(f"Your tax amount: {tax_amount:.2f}")
 
     elif choice == "6":
         a = input("Enter a value: ")
         b = input("Enter b value: ")
-        c = input("Etner c value: ")
-        solve_quadratic(int(a), int(b), int(c))
+        c = input("Enter c value: ")
+        solution1, solution2 = solve_quadratic(int(a), int(b), int(c))
+        print(f"The answer for the quadratic formula is: {solution1} and {solution2}")
 
     elif choice == "7":
         input_list = []
