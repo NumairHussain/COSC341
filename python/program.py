@@ -193,7 +193,28 @@ def file_sort(infile, outfile):
         outfile.write(student_ids[i] + " " + student_names[i] + " " + student_gpas[i] + "\n")
 
 
+class Rectangle:
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
 
+    def set_length(self, new_length):
+        self.length = new_length
+
+    def set_width(self, new_width):
+        self.width = new_width
+
+    def get_length(self):
+        return self.length
+    
+    def get_width(self):
+        return self.width
+    
+    def a(self):
+        return self.length * self.width
+    
+    def __str__(self):
+        return "Length of Rectangle: " + str(self.length) + " | Width of Rectangle: " + str(self.width)
 
 while True:
     print("Menu Options:")
@@ -265,4 +286,11 @@ while True:
         file_sort(input_file_name, output_file_name)
 
     elif choice == "10":
+        rect = Rectangle(5, 10)
+        print("get_length:", rect.get_length())
+        print("get_width:", rect.get_width())
+        rect.set_length(15)
+        rect.set_width(20)
+        print(rect)
+        print("Area of rectangle:", rect.a())
         break
