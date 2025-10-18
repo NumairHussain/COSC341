@@ -160,7 +160,7 @@ def id_password(first, last):
     the last name
     '''
     user_id = first[0] + last
-    password = first[0] + first[len(first) - 1] + last[0:3] + (str) (len(first)) + (str) (len(last))
+    password = first[0] + first[len(first) - 1] + last[0:3] + str(len(first)) + str(len(last))
 
     return user_id.upper(), password.upper()
 
