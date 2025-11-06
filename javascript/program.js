@@ -18,7 +18,7 @@ console.log(factors(10));
 function tax(income, status)
 {
     let taxed_amount;
-    if (status == "single")
+    if (status.toLowerCase() == "single")
     {
         if (income < 30000)
         {
@@ -64,3 +64,14 @@ function stdDev(arr)
 
 arr = [1, 2, 3, 4, 5, 6]
 console.log(stdDev(arr))
+
+function createIDPassword(lastName, firstName)
+{
+    var id = firstName[0] + lastName;
+    var password = firstName[0] + firstName[firstName.length - 1]  + lastName.substring(0, 3) + firstName.length + "" + lastName.length
+    return [id.toUpperCase(), password.toUpperCase()]
+}
+
+firstName = "John"
+lastName = "Maxwell"
+console.log(createIDPassword(lastName, firstName))
