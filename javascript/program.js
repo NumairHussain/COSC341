@@ -102,3 +102,40 @@ var arr = ["tree", "cat", "box", "cat", "dog", "tree", "tree", "box"];
 console.log(removeDuplicates(arr))
 
 
+class Student
+{
+    constructor(name, gpa)
+    {
+        this.name = name;
+        this.gpa = gpa;
+    }
+
+    getName()
+    {
+        return this.name;
+    }
+
+    getGpa()
+    {
+        return this.gpa;
+    }
+
+    setName(name)
+    {
+        this.name = name
+    }
+
+    setGpa(gpa)
+    {
+        this.gpa = gpa
+    }
+
+    isHonors()
+    {
+        if (gpa > 3)
+        {
+            return true;
+        }
+        return false;
+    }
+}
