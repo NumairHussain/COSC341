@@ -75,3 +75,30 @@ function createIDPassword(lastName, firstName)
 firstName = "John"
 lastName = "Maxwell"
 console.log(createIDPassword(lastName, firstName))
+
+function removeDuplicates(arr)
+{
+    var newArray = [];
+    for (var i = 0; i < arr.length; i++)
+    {
+        var isDuplicate = false;
+        for (var j = 0; j < newArray.length; j++)
+        {
+            if (arr[i] == newArray[j])
+            {
+                isDuplicate = true;
+                break;
+            }
+        }
+        if (!isDuplicate)
+        {
+            newArray[newArray.length] = arr[i];
+        }
+    }
+    return newArray;
+}
+
+var arr = ["tree", "cat", "box", "cat", "dog", "tree", "tree", "box"];
+console.log(removeDuplicates(arr))
+
+
