@@ -1,10 +1,12 @@
+// Find all factors of a given number
 function factors(num)
 {
-    let all_factors = "1";
+    let all_factors = "1"; // Start with 1 as first factor
     
+    // Check each number from 2 to num for factors
     for (let i = 2; i <= num; i++)
     {
-        if (num % i === 0)
+        if (num % i === 0) // If i divides num evenly, it's a factor
         {
             all_factors += ", " + i;
         }
@@ -13,58 +15,61 @@ function factors(num)
     return all_factors;
 }
 
-console.log(factors(10));
-
+// Calculate tax amount
 function tax(income, status)
 {
     let taxed_amount;
+    
+    // Check if single
     if (status.toLowerCase() == "single")
     {
+        // Check Income
         if (income < 30000)
         {
-            taxed_amount = income * .2;
+            taxed_amount = income * .2; // 20%
         }
         else
         {
-            taxed_amount = income * .25;
+            taxed_amount = income * .25; // 25%
         }
     }
-    else
+    // Check if married
+    else if (status.toLowerCase() == "married")
     {
+        // Check Income
         if (income < 50000)
         {
-            taxed_amount = income * .1;
+            taxed_amount = income * .1; // 10% 
         }
         else
         {
-            taxed_amount = income * .15
+            taxed_amount = income * .15; // 15% 
         }
     }
     return taxed_amount;
 }
 
-console.log(tax(60000, "married"))
-
+// Calculate standard deviation
 function stdDev(arr)
 {
+    // Calculate sum of all elements
     let sum = 0;
     for (let i = 0; i < arr.length; i++)
     {
-        sum += arr[i]
+        sum += arr[i];
     }
-    let average = sum / arr.length;
+    let average = sum / arr.length; // Calculate mean
 
+    // Calculate sum of squared differences from mean
     let standard_deviation = 0;
     for (let i = 0; i < arr.length; i++)
     {
-        standard_deviation += (arr[i] - average) * (arr[i] - average)
+        standard_deviation += (arr[i] - average) * (arr[i] - average);
     }
-    return standard_deviation / arr.length;
+    return standard_deviation / arr.length; // Return standard deviation
 }
 
-arr = [1, 2, 3, 4, 5, 6]
-console.log(stdDev(arr))
-
+// Create user ID
 function createIDPassword(lastName, firstName)
 {
     var id = firstName[0] + lastName;
@@ -72,24 +77,27 @@ function createIDPassword(lastName, firstName)
     return [id.toUpperCase(), password.toUpperCase()]
 }
 
-firstName = "John"
-lastName = "Maxwell"
-console.log(createIDPassword(lastName, firstName))
-
+// Remove duplicates
 function removeDuplicates(arr)
 {
     var newArray = [];
+    
+    // Check each element
     for (var i = 0; i < arr.length; i++)
     {
-        var isDuplicate = false;
+        var isDuplicate = false; // Reset flag for each element
+        
+        // Check if current element already exists in newArray
         for (var j = 0; j < newArray.length; j++)
         {
             if (arr[i] == newArray[j])
             {
                 isDuplicate = true;
-                break;
+                break; // Exit inner loop if duplicate found
             }
         }
+        
+        // Add element only if it's not a duplicate
         if (!isDuplicate)
         {
             newArray[newArray.length] = arr[i];
@@ -98,41 +106,44 @@ function removeDuplicates(arr)
     return newArray;
 }
 
-var arr = ["tree", "cat", "box", "cat", "dog", "tree", "tree", "box"];
-console.log(removeDuplicates(arr))
-
-
+// Student class
 class Student
 {
+    // Constructor to initialize student with name and GPA
     constructor(name, gpa)
     {
         this.name = name;
         this.gpa = gpa;
     }
 
+    // Get student's name
     getName()
     {
         return this.name;
     }
 
+    // Get student's GPA
     getGpa()
     {
         return this.gpa;
     }
 
+    // Set student's name
     setName(name)
     {
-        this.name = name
+        this.name = name;
     }
 
+    // Set student's GPA
     setGpa(gpa)
     {
-        this.gpa = gpa
+        this.gpa = gpa;
     }
 
+    // Check if student qualifies for honors
     isHonors()
     {
-        if (gpa > 3)
+        if (this.gpa > 3)
         {
             return true;
         }
