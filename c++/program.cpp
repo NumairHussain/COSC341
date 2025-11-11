@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 double compute_pi(int n)
 {
@@ -14,6 +15,20 @@ double compute_pi(int n)
     return 4 * pi;
 }
 
+void scores()
+{
+    while(true)
+    {
+        std::string input;
+        std::string exit_case = "-1";
+        std::cin >> input;
+        if (input == exit_case)
+        {
+            break;
+        }
+        
+    }
+}
 
 
 int main()
