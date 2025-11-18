@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <fstream>
+
+//To Run, do g++ program.c -o program
 
 double compute_pi(int n)
 {
@@ -69,15 +72,68 @@ void scores()
     }
 }
 
+// Sort student data from input file to output file
 void file_sort(char *infile, char *outfile)
 {
+    // Read student data from input file
+    std::ifstream fin(infile);
+    int num_students = 0;
+    fin >> num_students;
 
+    // Arrays to hold student data
+    int student_ids[num_students];
+    char student_grades[num_students];
+    double student_gpas[num_students];
+
+    // Read student data from file
+    for (int i = 0; i < num_students; i++)
+    {
+        fin >> student_ids[i] >> student_grades[i] >> student_gpas[i];
+        std::cout << student_ids[i] << " " << student_grades[i] << " " << student_gpas[i] << std::endl;
+    }
+
+    fin.close();
+
+    // Sort students by ID using bubble sort
+    for (int i = 0; i < num_students; i++)
+    {
+        for (int j = 0; j < num_students - i - 1; j++)
+        {
+            if (student_ids[j] > student_ids[j + 1])
+            {
+                // Swap student data
+                int temp_id = student_ids[j];
+                student_ids[j] = student_ids[j + 1];
+                student_ids[j + 1] = temp_id;
+
+                // Swap grades
+                char temp_grade = student_grades[j];
+                student_grades[j] = student_grades[j + 1];
+                student_grades[j + 1] = temp_grade;
+
+                // Swap gpas
+                double temp_gpa = student_gpas[j];
+                student_gpas[j] = student_gpas[j + 1];
+                student_gpas[j + 1] = temp_gpa;
+            }
+        }
+    }
+
+    // Write sorted data to output file
+    std::ofstream fout(outfile);
+    fout << num_students << std::endl;
+    for (int i = 0; i < num_students; i++)
+    {
+        fout << student_ids[i] << " " << student_grades[i] << " "<< std::fixed << std::setprecision(2) << student_gpas[i] << std::endl;
+    }
+    fout.close();
 }
 
 
 int main()
 {
-    std::cout << compute_pi(3) << "\n"
-    scores();
+    std::string infile = "case3in.txt";
+    std::string outfile = "case3out.txt";
+    file_sort(&infile[0], &outfile[0]);
     return 0;
 }
