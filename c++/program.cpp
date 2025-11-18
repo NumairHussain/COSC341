@@ -130,6 +130,35 @@ void file_sort(char *infile, char *outfile)
 }
 
 
+class Rectangle
+{
+    private:
+        int height;
+        int width;
+
+    public:
+        Rectangle();
+        Rectangle(int size);
+        Rectangle(int height, int width);
+};
+
+Rectangle::Rectangle()
+{
+    this->height = 0;
+    this->width = 0;
+}
+
+Rectangle::Rectangle(int size)
+{
+    this->height = size;
+    this->width = size;
+}
+
+Rectangle::Rectangle(int height, int width)
+{
+    this->height = height;
+    this->width = width;
+}
 
 
 int main()
