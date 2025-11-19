@@ -160,6 +160,58 @@ Rectangle::Rectangle(int height, int width)
     this->width = width;
 }
 
+class Scores
+{
+    private:
+        int num_students;
+        double* scores;  // Changed from double scores[] to double*
+
+    public:
+        Scores(int num_students, double scores[]);
+        ~Scores();  // Destructor
+        double average();
+        void display();
+};
+
+Scores::Scores(int num_students, double scores[])
+{
+    this->num_students = num_students;
+    this->scores = new double[num_students];  // Create new array
+    
+    // Copy scores from parameter array to class array
+    for (int i = 0; i < num_students; i++)
+    {
+        this->scores[i] = scores[i];
+    }
+}
+
+Scores::~Scores()
+{
+    delete[] scores;  // Delete the dynamically allocated array
+}
+
+double Scores::average()
+{
+    if (num_students == 0) return 0.0;
+    
+    double sum = 0.0;
+    for (int i = 0; i < num_students; i++)
+    {
+        sum += scores[i];
+    }
+    return sum / num_students;
+}
+
+void Scores::display()
+{
+    std::cout << "Scores: ";
+    for (int i = 0; i < num_students; i++)
+    {
+        std::cout << scores[i] << " ";
+    }
+    std::cout << std::endl;
+    std::cout << "Average: " << std::fixed << std::setprecision(2) << average() << std::endl;
+}
 
 int main()
 {
