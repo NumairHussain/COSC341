@@ -60,13 +60,13 @@ void scores()
     if (total_students > 0)
     {
         double average_score = sum_grades / total_students;
-        std::cout << "Avg score: " << std::fixed << std::setprecision(2) << average_score << std::endl;
-        std::cout << "Max score: " << best_grade << std::endl;
-        std::cout << "Min score: " << worst_grade << std::endl;
+        std::cout << "Avg score: " << std::fixed << std::setprecision(2) << average_score << "\n";
+        std::cout << "Max score: " << best_grade << "\n";
+        std::cout << "Min score: " << worst_grade << "\n";
     }
     else
     {
-        std::cout << "No scores entered" << std::endl;
+        std::cout << "No scores entered" << "\n";
     }
 }
 
@@ -118,10 +118,10 @@ void file_sort(char *infile, char *outfile)
 
     // Write sorted data to output file
     std::ofstream fout(outfile);
-    fout << num_students << std::endl;
+    fout << num_students << "\n";
     for (int i = 0; i < num_students; i++)
     {
-        fout << student_ids[i] << " " << student_grades[i] << " " << student_gpas[i] << std::endl;
+        fout << student_ids[i] << " " << student_grades[i] << " " << student_gpas[i] << "\n";
     }
     fout.close();
 
@@ -154,7 +154,7 @@ class Rectangle
 
         // Calculate area
         int area() {return this->height * this->width;};
-        void display(){std::cout << "Height: " << this->height << ", Width: " << this->width << ", Area: " << area() << std::endl;};
+        void display(){std::cout << "Height: " << this->height << ", Width: " << this->width << ", Area: " << area() << "\n";};
 };
 
 // Class to manage student scores
@@ -229,10 +229,10 @@ void Score::display()
     {
         std::cout << scores[i] << " ";
     }
-    std::cout << std::endl;
+    std::cout << "\n";
 
     // Display average score
-    std::cout << "Average: " << average() << std::endl;
+    std::cout << "Average: " << average() << "\n";
 }
 
 // Person class
@@ -286,5 +286,5 @@ class Student : public Person
 // Display student information
 void Student::show()
 {
-    std::cout << "Name: " << get_name() << ", Age: " << get_age() << ", ID: " << get_id() << ", GPA: " << get_gpa() << std::endl;
+    std::cout << "Name: " << get_name() << ", Age: " << get_age() << ", ID: " << get_id() << ", GPA: " << get_gpa() << "\n";
 }
