@@ -1,7 +1,5 @@
 void scores()
 {
-    string nameBuffer;
-    string worstStudent = "", bestStudent = "";
     int bestGrade = 0, worstGrade = 100;
     int totalStudents = 0;
     int gradeInput;
@@ -9,26 +7,22 @@ void scores()
     
     while (true)
     {
-        Console.Write("Enter student name and score, or -1 to quit: ");
-        nameBuffer = Console.ReadLine();
+        Console.Write("Enter score or -1 to quit: ");
+        gradeInput = Convert.ToInt32(Console.ReadLine());
         
         // Check for quit condition
-        if (nameBuffer == "-1")
+        if (gradeInput == -1)
         {
             break;
         }
         
-        gradeInput = Convert.ToInt32(Console.ReadLine());
-        
         // Update min, max, and sum
         if (gradeInput < worstGrade)
         {
-            worstStudent = nameBuffer;
             worstGrade = gradeInput;
         }
         if (gradeInput > bestGrade)
         {
-            bestStudent = nameBuffer;
             bestGrade = gradeInput;
         }
         sumGrades += gradeInput;
@@ -39,7 +33,7 @@ void scores()
     if (totalStudents > 0)
     {
         double averageScore = sumGrades / totalStudents;
-        Console.WriteLine("Avg score: " + averageScore);
+        Console.WriteLine("Avg score: " + averageScore.ToString("F2"));
         Console.WriteLine("Max score: " + bestGrade);
         Console.WriteLine("Min score: " + worstGrade);
     }
@@ -49,7 +43,7 @@ void scores()
     }
 }
 
-void createIDPassword(string last, string first)
+void createIdPassword(string last, string first)
 {
     id = first[0] + last;
     password = first[0] + first[first.Length - 1] + last.Substring(0, 3) + first.Length + "" + last.Length;
@@ -155,7 +149,7 @@ class Rectangle
         this.height = height;
     }
 
-    public void GetHeight()
+    public int GetHeight()
     {
         return this.height;
     }
@@ -171,18 +165,71 @@ class Rectangle
     }
 }
 
-class program
+class Person
 {
-    public static void Main(string[] args)
+    private int age;
+    private string name;
+
+    public Person(int age, string name)
     {
-        // Call the scores function
-        scores();
-        
-        // Create ID and password
-        Console.Write("Enter last name: ");
-        string lastName = Console.ReadLine();
-        Console.Write("Enter first name: ");
-        string firstName = Console.ReadLine();
-        createIDPassword(lastName, firstName);
+        this.age = age;
+        this.name = name;
+    }
+
+    public void SetAge(int age)
+    {
+        this.age = age;
+    }
+
+    public int GetAge()
+    {
+        return this.age;
+    }
+
+    public void SetName(string name)
+    {
+        this.name = name;
+    }
+
+    public string GetName()
+    {
+        return this.name;
+    }
+}
+
+class Student : Person
+{
+    private int id;
+    private double gpa;
+
+    public Student(string name, int age, int id, double gpa) : base(age, name)
+    {
+        this.id = id;
+        this.gpa = gpa;
+    }
+
+    public void SetId(int id)
+    {
+        this.id = id;
+    }
+
+    public int GetId()
+    {
+        return this.id;
+    }
+
+    public void SetGpa(double gpa)
+    {
+        this.gpa = gpa;
+    }
+
+    public double GetGpa()
+    {
+        return this.gpa;
+    }
+
+    public void Show()
+    {
+        Console.WriteLine("Name: " + this.GetName() + ", Age: " + this.GetAge() + ", ID: " + this.GetId() + ", GPA: " + this.GetGpa().ToString("F2"));
     }
 }

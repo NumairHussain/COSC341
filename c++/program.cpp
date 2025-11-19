@@ -23,8 +23,6 @@ double compute_pi(int n)
 void scores()
 {
     // Initialize variables
-    std::string name_buffer;
-    std::string worst_student, best_student;
     int best_grade = 0, worst_grade = 100;
     int total_students = 0;
     int grade_input;
@@ -33,25 +31,22 @@ void scores()
     while (true)
     {
         // Prompt user for input
-        std::cout << "Enter student name and score, or -1 to quit: ";
-        std::cin >> name_buffer;
+        std::cout << "Enter score or -1 to quit: ";
+        std::cin >> grade_input;
 
         // Check for quit condition
-        if (name_buffer == "-1")
+        if (grade_input == -1)
         {
             break;
         }
-        std::cin >> grade_input;
 
         // Update min, max, and sum
         if (grade_input < worst_grade)
         {
-            worst_student = name_buffer;
             worst_grade = grade_input;
         }
         if (grade_input > best_grade)
         {
-            best_student = name_buffer;
             best_grade = grade_input;
         }
         sum_grades += grade_input;
@@ -81,15 +76,14 @@ void file_sort(char *infile, char *outfile)
     fin >> num_students;
 
     // Arrays to hold student data
-    int student_ids[num_students];
-    char student_grades[num_students];
-    double student_gpas[num_students];
+    int *student_ids = new int[num_students];
+    char *student_grades = new char[num_students];
+    double *student_gpas = new double[num_students];
 
     // Read student data from file
     for (int i = 0; i < num_students; i++)
     {
         fin >> student_ids[i] >> student_grades[i] >> student_gpas[i];
-        std::cout << student_ids[i] << " " << student_grades[i] << " " << student_gpas[i] << std::endl;
     }
 
     fin.close();
@@ -124,9 +118,13 @@ void file_sort(char *infile, char *outfile)
     fout << num_students << std::endl;
     for (int i = 0; i < num_students; i++)
     {
-        fout << student_ids[i] << " " << student_grades[i] << " "<< std::fixed << std::setprecision(2) << student_gpas[i] << std::endl;
+        fout << student_ids[i] << " " << student_grades[i] << " " << student_gpas[i] << std::endl;
     }
     fout.close();
+
+    delete[] student_ids;
+    delete[] student_grades;
+    delete[] student_gpas;
 }
 
 
@@ -140,22 +138,28 @@ class Rectangle
         Rectangle() {this->height = 0; this->width = 0;};
         Rectangle(int size) {this->height = size; this->width = size;};
         Rectangle(int height, int width) {this->height = height; this->width = width;};
+        void set_height(int height) {this->height = height;};
+        void set_width(int width) {this->width = width;};
+        int get_height() {return this->height;};
+        int get_width() {return this->width;};
+        int area() {return this->height * this->width;};
+        void display(){std::cout << "Height: " << this->height << ", Width: " << this->width << ", Area: " << area() << std::endl;};
 };
 
-class Scores
+class Score
 {
     private:
         int num_students;
         double* scores;
 
     public:
-        Scores(int num_students, double scores[]);
-        ~Scores();  // Destructor
+        Score(int num_students, double scores[]);
+        ~Score();  // Destructor
         double average();
         void display();
 };
 
-Scores::Scores(int num_students, double scores[])
+Score::Score(int num_students, double scores[])
 {
     this->num_students = num_students;
     this->scores = new double[num_students];  // Create new array
@@ -167,12 +171,12 @@ Scores::Scores(int num_students, double scores[])
     }
 }
 
-Scores::~Scores()
+Score::~Score()
 {
     delete[] scores;  // Delete the dynamically allocated array
 }
 
-double Scores::average()
+double Score::average()
 {
     if (num_students == 0) return 0.0;
     
@@ -184,7 +188,7 @@ double Scores::average()
     return sum / num_students;
 }
 
-void Scores::display()
+void Score::display()
 {
     std::cout << "Scores: ";
     for (int i = 0; i < num_students; i++)
@@ -203,6 +207,8 @@ class Person
 
     public:
         Person(std::string name, int age) {this->name = name; this->age = age;};
+        void set_name(std::string name) {this->name = name;};
+        void set_age(int age) {this->age = age;};
         int get_age() {return this->age;};
         std::string get_name() {return this->name;};
 };
