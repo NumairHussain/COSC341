@@ -117,6 +117,60 @@ void fileSort(string infile, string outfile)
     fout.Close();
 }
 
+class Rectangle
+{
+    private int width;
+    private int height;
+
+    public Rectangle()
+    {
+        this.width = 0;
+        this.height = 0;
+    }
+
+    public Rectangle(int size)
+    {
+        this.width = size;
+        this.height = size;
+    }
+
+    public Rectangle(int width, int height)
+    {
+        this.width = width;
+        this.height = height;
+    }
+
+    public void SetWidth(int width)
+    {
+        this.width = width;
+    }
+
+    public int GetWidth()
+    {
+        return this.width;
+    }
+
+    public void SetHeight(int height)
+    {
+        this.height = height;
+    }
+
+    public void GetHeight()
+    {
+        return this.height;
+    }
+
+    public int Area()
+    {
+        return this.width * this.height;
+    }
+
+    public void Display()
+    {
+        Console.WriteLine("Width: " + this.width + ", Height: " + this.height);
+    }
+}
+
 class program
 {
     public static void Main(string[] args)
