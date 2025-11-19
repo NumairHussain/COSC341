@@ -1,7 +1,11 @@
+using System;
+using System.IO;
+
 // Process student scores to find average, max, and min
 class program
 {
-    void scores()
+    // Process student scores and find min, max, and average
+    static void scores()
     {
         // Initialize variables
         int bestGrade = 0, worstGrade = 100;
@@ -50,18 +54,19 @@ class program
     }
 
     // Generate ID and password based on name
-    void createIdPassword(string last, string first)
+    static void createIdPassword(string last, string first)
     {
         // Create ID and password
-        id = first[0] + last;
-        password = first[0] + first[first.Length - 1] + last.Substring(0, 3) + first.Length + "" + last.Length;
+        string id = first[0] + last;
+        string password = first[0] + first[first.Length - 1] + last.Substring(0, 3) + first.Length + "" + last.Length;
 
         // Display ID and password
         Console.WriteLine("ID: " + id.ToUpper());
         Console.WriteLine("Password: " + password.ToUpper());
     }
 
-    void fileSort(string infile, string outfile)
+    // Sort student data from input file to output file
+    static void fileSort(string infile, string outfile)
     {
         // Read student data from input file
         StreamReader fin = new StreamReader(infile);
