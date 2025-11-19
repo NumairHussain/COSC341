@@ -3,19 +3,21 @@
 #include <iomanip>
 #include <fstream>
 
-//To Run, do g++ program.c -o program
-
+// Compute an approximation of pi
 double compute_pi(int n)
 {
+    // Initialize variables
     int sign = 1;
     double pi = 0.0;
 
+    // Calculate pi
     for (int i = 0; i < n; i++)
     {
         pi += sign * (1.0/(2 * i + 1));
         sign = -sign;
     }
 
+    // Return the pi * 4
     return 4 * pi;
 }
 
@@ -28,6 +30,7 @@ void scores()
     int grade_input;
     double sum_grades = 0;
     
+    // Loop to get scores from user
     while (true)
     {
         // Prompt user for input
@@ -122,6 +125,7 @@ void file_sort(char *infile, char *outfile)
     }
     fout.close();
 
+    // Free dynamically allocated memory
     delete[] student_ids;
     delete[] student_grades;
     delete[] student_gpas;
@@ -130,39 +134,60 @@ void file_sort(char *infile, char *outfile)
 
 class Rectangle
 {
+    // Private member variables
     private:
         int height;
         int width;
 
+    // Public member functions
     public:
+        // Constructors
         Rectangle() {this->height = 0; this->width = 0;};
         Rectangle(int size) {this->height = size; this->width = size;};
         Rectangle(int height, int width) {this->height = height; this->width = width;};
+
+        // Setters and Getters
         void set_height(int height) {this->height = height;};
         void set_width(int width) {this->width = width;};
         int get_height() {return this->height;};
         int get_width() {return this->width;};
+
+        // Calculate area
         int area() {return this->height * this->width;};
         void display(){std::cout << "Height: " << this->height << ", Width: " << this->width << ", Area: " << area() << std::endl;};
 };
 
+// Class to manage student scores
 class Score
 {
+    // Private member variables
     private:
         int num_students;
         double* scores;
 
+    // Public member functions
     public:
+        // Constructors
         Score(int num_students, double scores[]);
-        ~Score();  // Destructor
+
+        // Destructor
+        ~Score();  
+
+        // Calculate average score
         double average();
+
+        // Display scores and average
         void display();
 };
 
+// Constructor
 Score::Score(int num_students, double scores[])
 {
+    // Initialize member variables
     this->num_students = num_students;
-    this->scores = new double[num_students];  // Create new array
+
+    // Create new array
+    this->scores = new double[num_students];  
     
     // Copy scores from parameter array to class array
     for (int i = 0; i < num_students; i++)
@@ -171,68 +196,94 @@ Score::Score(int num_students, double scores[])
     }
 }
 
+// Destructor
 Score::~Score()
 {
-    delete[] scores;  // Delete the dynamically allocated array
+    // Free dynamically allocated memory
+    delete[] scores;  
 }
 
+// Calculate average score
 double Score::average()
 {
+    // Check for zero students
     if (num_students == 0) return 0.0;
     
+    // Calculate sum of scores
     double sum = 0.0;
     for (int i = 0; i < num_students; i++)
     {
         sum += scores[i];
     }
+
+    // Return average
     return sum / num_students;
 }
 
+// Display scores and average
 void Score::display()
 {
+    // Display individual scores
     std::cout << "Scores: ";
     for (int i = 0; i < num_students; i++)
     {
         std::cout << scores[i] << " ";
     }
     std::cout << std::endl;
-    std::cout << "Average: " << std::fixed << std::setprecision(2) << average() << std::endl;
+
+    // Display average score
+    std::cout << "Average: " << average() << std::endl;
 }
 
+// Person class
 class Person
 {
+    // Private member variables
     private:
         std::string name;
         int age;
 
+    // Public member functions
     public:
+    // Constructors
         Person(std::string name, int age) {this->name = name; this->age = age;};
+
+        // Setters and Getters
         void set_name(std::string name) {this->name = name;};
         void set_age(int age) {this->age = age;};
         int get_age() {return this->age;};
         std::string get_name() {return this->name;};
 };
 
+// Student class inheriting from Person
 class Student : public Person
 {
+    // Private member variables
     private:
         int id;
         double gpa;
 
+    // Public member functions
     public:
+
+        // Constructor
         Student(std::string name, int age, int id, double gpa) : Person(name, age)
         {
             this->id = id;
             this->gpa = gpa;
         }
-        
+
+        // Setters and Getters
         int get_id() {return this->id;};
         double get_gpa() {return this->gpa;};
         void set_id(int id) {this->id = id;};
         void set_gpa(double gpa) {this->gpa = gpa;};
+
+        // Display student information
         void show();
 };
 
+// Display student information
 void Student::show()
 {
     std::cout << "Name: " << get_name() << ", Age: " << get_age() << ", ID: " << get_id() << ", GPA: " << get_gpa() << std::endl;

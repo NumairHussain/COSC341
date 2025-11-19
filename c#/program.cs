@@ -1,12 +1,16 @@
+// Process student scores to find average, max, and min
 void scores()
 {
+    // Initialize variables
     int bestGrade = 0, worstGrade = 100;
     int totalStudents = 0;
     int gradeInput;
     double sumGrades = 0;
     
+    // Input loop
     while (true)
     {
+        // Prompt for score
         Console.Write("Enter score or -1 to quit: ");
         gradeInput = Convert.ToInt32(Console.ReadLine());
         
@@ -43,10 +47,14 @@ void scores()
     }
 }
 
+// Generate ID and password based on name
 void createIdPassword(string last, string first)
 {
+    // Create ID and password
     id = first[0] + last;
     password = first[0] + first[first.Length - 1] + last.Substring(0, 3) + first.Length + "" + last.Length;
+
+    // Display ID and password
     Console.WriteLine("ID: " + id.ToUpper());
     Console.WriteLine("Password: " + password.ToUpper());
 }
@@ -74,6 +82,7 @@ void fileSort(string infile, string outfile)
         Console.WriteLine(studentIds[i] + " " + studentGrades[i] + " " + studentGpas[i]);
     }
 
+    // Close input file
     fin.Close();
 
     // Sort students by ID using bubble sort
@@ -111,11 +120,14 @@ void fileSort(string infile, string outfile)
     fout.Close();
 }
 
+// Rectangle class
 class Rectangle
 {
+    // Attributes
     private int width;
     private int height;
 
+    // Constructors
     public Rectangle()
     {
         this.width = 0;
@@ -134,6 +146,7 @@ class Rectangle
         this.height = height;
     }
 
+    // Setters and Getters
     public void SetWidth(int width)
     {
         this.width = width;
@@ -154,28 +167,34 @@ class Rectangle
         return this.height;
     }
 
+    // Calculate area
     public int Area()
     {
         return this.width * this.height;
     }
 
+    // Display dimensions
     public void Display()
     {
         Console.WriteLine("Width: " + this.width + ", Height: " + this.height);
     }
 }
 
+// Person class
 class Person
 {
+    // Attributes
     private int age;
     private string name;
 
+    // Constructor
     public Person(int age, string name)
     {
         this.age = age;
         this.name = name;
     }
 
+    // Setters and Getters
     public void SetAge(int age)
     {
         this.age = age;
@@ -197,17 +216,21 @@ class Person
     }
 }
 
+// Student class inheriting from Person
 class Student : Person
 {
+    // Attributes
     private int id;
     private double gpa;
 
+    // Constructor
     public Student(string name, int age, int id, double gpa) : base(age, name)
     {
         this.id = id;
         this.gpa = gpa;
     }
 
+    // Setters and Getters
     public void SetId(int id)
     {
         this.id = id;
@@ -228,6 +251,7 @@ class Student : Person
         return this.gpa;
     }
 
+    // Display student information
     public void Show()
     {
         Console.WriteLine("Name: " + this.GetName() + ", Age: " + this.GetAge() + ", ID: " + this.GetId() + ", GPA: " + this.GetGpa().ToString("F2"));
